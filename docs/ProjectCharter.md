@@ -1,7 +1,7 @@
 # Project Charter: Context-Aware Movie Recommender System
 
 ## Problem Statement
-Develop a context-aware recommender system that provides personalized movie recommendations based on user preferences, time of day, and day of the week.
+Develop a context-aware recommender system that provides personalized Product recommendations based on user preferences.
 
 ## Goals
 1. Improve recommendation accuracy by incorporating contextual information
@@ -9,7 +9,7 @@ Develop a context-aware recommender system that provides personalized movie reco
 3. Develop a scalable and deployable solution
 
 ## Scope
-- Use the MovieLens 100K dataset for training and evaluation
+- Use the Amazon Reviews 2023 dataset  for training and evaluation
 - Implement a Context-Aware Matrix Factorization (CAMF) model
 - Develop a user-friendly interface for interacting with the recommender system
 - Deploy the solution using Docker for easy distribution and scaling
