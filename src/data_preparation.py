@@ -37,15 +37,27 @@ def prepare_data(ratings_file, movies_file):
     return X_train, X_test, y_train, y_test
 
 if __name__ == "__main__":
-    ratings_file = '../data/rating.csv'
-    movies_file = '../data/movie.csv'
+    import os
+    print(os.getcwd())
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    print(script_dir)
+
+    # ratings_file = 'C:/Users/user/Desktop/programi brk/DataScience/context aware recommender system/data/rating.csv'
+    # movies_file = 'C:/Users/user/Desktop/programi brk/DataScience/context aware recommender system/data/movie.csv'
+    ratings_file = os.path.join(script_dir, '..', 'data', 'rating.csv')
+    movies_file = os.path.join(script_dir, '..', 'data', 'movie.csv')
     
     X_train, X_test, y_train, y_test = prepare_data(ratings_file, movies_file)
     
-    # Save prepared data
-    np.save('../data/X_train.npy', X_train)
-    np.save('../data/X_test.npy', X_test)
-    np.save('../data/y_train.npy', y_train)
-    np.save('../data/y_test.npy', y_test)
+    X_train_path = os.path.join(script_dir, '..', 'data', 'X_train.npy')
+    X_test_path = os.path.join(script_dir,'..', 'data', 'X_test.npy')
+    y_train_path = os.path.join(script_dir,'..', 'data', 'y_train.npy')
+    y_test_path = os.path.join(script_dir,'..', 'data', 'y_test.npy')
+
+    # Save the data using relative paths
+    np.save(X_train_path, X_train)
+    np.save(X_test_path, X_test)
+    np.save(y_train_path, y_train)
+    np.save(y_test_path, y_test)
     
     print("Data preparation complete. Prepared data saved as numpy arrays.")
