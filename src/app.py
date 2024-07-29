@@ -1,19 +1,26 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import os
 import joblib
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Load the trained model
 @st.cache(allow_output_mutation=True)
 def load_model():
-    return joblib.load('../models/camf_model.joblib')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    CamfModel_path = os.path.join(script_dir, '..', 'models', 'camf_model.joblib')
+
+    return joblib.load(CamfModel_path)
 
 model = load_model()
 
 # Load movie data
 @st.cache
 def load_movie_data():
-    return pd.read_csv('../data/movie.csv')
+    movies_file = os.path.join(script_dir, '..', 'data', 'movie.csv')
+
+    return pd.read_csv(movies_file)
 
 movies = load_movie_data()
 
@@ -30,8 +37,8 @@ day_num = day_mapping[day]
 if st.button('Get Recommendations'):
     # Create input data for all movies
     input_data = pd.DataFrame({
-        'user_id': [user_id] * len(movies),
-        'movie_id': movies['movie_id'],
+        'userId': [user_id] * len(movies),
+        'movieId': movies['movieId'],
         'hour': [hour] * len(movies),
         'day_of_week': [day_num] * len(movies)
     })
@@ -40,7 +47,7 @@ if st.button('Get Recommendations'):
     predictions = model.predict(input_data)
 
     # Sort movies by predicted rating
-    top_movies = movies.iloc[np.argsort(predictions)[::-1][:10]]
+    top_movies = pd.Series(movies).iloc[np.argsort(predictions)[::-1][:10]]
 
     st.subheader('Top 10 Recommended Movies:')
     for i, (_, movie) in enumerate(top_movies.iterrows(), 1):

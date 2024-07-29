@@ -41,9 +41,6 @@ if __name__ == "__main__":
     print(os.getcwd())
     script_dir = os.path.dirname(os.path.abspath(__file__))
     print(script_dir)
-
-    # ratings_file = 'C:/Users/user/Desktop/programi brk/DataScience/context aware recommender system/data/rating.csv'
-    # movies_file = 'C:/Users/user/Desktop/programi brk/DataScience/context aware recommender system/data/movie.csv'
     ratings_file = os.path.join(script_dir, '..', 'data', 'rating.csv')
     movies_file = os.path.join(script_dir, '..', 'data', 'movie.csv')
     
