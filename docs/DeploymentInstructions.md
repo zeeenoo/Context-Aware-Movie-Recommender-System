@@ -8,7 +8,7 @@
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/context-aware-recommender.git
+   git clone https://github.com/zeeenoo/Context-Aware-Movie-Recommender-System
    cd context-aware-recommender
    ```
 
